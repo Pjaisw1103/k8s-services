@@ -1,0 +1,33 @@
+# 1. ClusterIP Service (Internal Cluster Communication)
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-clusterip-service
+  labels:
+    app: nginx
+spec:
+  type: ClusterIP
+  selector:
+    app: nginx
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+
+---
+
+# 2. LoadBalancer Service (Exposes Service Externally via Azure Cloud Load Balancer)
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-loadbalancer-service
+  labels:
+    app: nginx
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
